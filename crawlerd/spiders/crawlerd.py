@@ -70,7 +70,12 @@ class CrawlerdSpider(scrapy.Spider):
                 yield response.follow(href, self.parse)
                 continue
 
-            url_domain = url.split('/')[2]
+            if len(url.split('/')) >= 3:
+                url_domain = url.split('/')[2]
+            else:
+                self.log(url)
+                url_domain = url
+
             url_domain_nw = url_domain.replace('www.', '')
             if url_domain in self.allowed_domains or url_domain_nw in self.allowed_domains:
                 yield response.follow(href, self.parse)
