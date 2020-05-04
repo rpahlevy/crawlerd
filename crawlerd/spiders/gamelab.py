@@ -13,7 +13,10 @@ class GamelabSpider(scrapy.Spider):
         # get domain
         domain = url.split('/')[2]#.replace('www.', '')
 
-        body = response.xpath('normalize-space(//body)').extract_first()
+        try:
+            body = response.xpath('normalize-space(//body)').extract_first()
+        except:
+            return
 
         for href in response.css('a::attr(href)'):
             href = href.get()
