@@ -19,6 +19,7 @@ class GamelabSpider(scrapy.Spider):
             href = href.get()
             if 'http' not in href:
                 yield response.follow(href, self.parse)
+                continue
 
             href_domain = href.split('/')[2]
             href_domain_nw = href_domain.replace('www.', '')
