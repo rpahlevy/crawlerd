@@ -28,7 +28,7 @@ class CrawlerdSpider(scrapy.Spider):
     def __init__(self, *args, **kwargs):
         super(CrawlerdSpider, self).__init__(*args, **kwargs)
 
-        if hasattr(self, website):
+        if hasattr(self, 'website'):
             urls = self.website.strip().split(';')
         else:
             # parse url list
